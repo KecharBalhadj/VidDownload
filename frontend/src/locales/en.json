@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "advertise": "Advertise"
+  },
+  "hero": {
+    "title": "Download Any Video",
+    "subtitle": "Instantly",
+    "description": "Download videos from YouTube, TikTok, Instagram, Facebook, Twitter, Pinterest, and more — in any quality, any format.",
+    "placeholder": "Paste your video link here...",
+    "analyze": "Analyze",
+    "analyzing": "Analyzing...",
+    "supported": "Supported platforms"
+  },
+  "download": {
+    "quality": "Quality",
+    "format": "Format",
+    "video": "Video",
+    "audio_only": "Audio Only",
+    "no_audio": "Video Only (No Audio)",
+    "download": "Download",
+    "preview": "Preview",
+    "title": "Title",
+    "duration": "Duration",
+    "platform": "Platform"
+  },
+  "quality": {
+    "auto": "Auto (Best)",
+    "4k": "4K (2160p)",
+    "1080p": "Full HD (1080p)",
+    "720p": "HD (720p)",
+    "480p": "SD (480p)",
+    "360p": "360p",
+    "240p": "240p",
+    "144p": "144p"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Tips, tutorials and news about video downloading",
+    "read_more": "Read More",
+    "comments": "Comments",
+    "leave_comment": "Leave a Comment",
+    "name": "Name",
+    "comment": "Comment",
+    "submit": "Submit",
+    "no_posts": "No posts yet."
+  },
+  "newsletter": {
+    "title": "Stay Updated",
+    "description": "Get the latest tips and updates delivered to your inbox.",
+    "placeholder": "Your email address",
+    "subscribe": "Subscribe",
+    "success": "Thank you for subscribing!",
+    "error": "Something went wrong. Please try again."
+  },
+  "pages": {
+    "about_title": "About VidGet",
+    "about_desc": "VidGet is a free, fast, and universal video downloader supporting 13+ platforms.",
+    "contact_title": "Contact Us",
+    "privacy_title": "Privacy Policy",
+    "terms_title": "Terms of Service",
+    "disclaimer_title": "Disclaimer",
+    "advertise_title": "Advertise with Us"
+  },
+  "errors": {
+    "invalid_url": "Please enter a valid video URL.",
+    "unsupported": "This platform is not supported yet.",
+    "fetch_failed": "Failed to fetch video info. Please try again.",
+    "rate_limited": "Too many requests. Please wait a moment."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "disclaimer": "Disclaimer"
+  },
+  "like": {
+    "like": "Like",
+    "liked": "Liked",
+    "likes": "likes"
+  }
+}

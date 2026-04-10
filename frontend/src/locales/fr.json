@@ -1,0 +1,12 @@
+{
+  "nav": { "home": "Accueil", "blog": "Blog", "about": "À propos", "contact": "Contact", "advertise": "Publicité" },
+  "hero": { "title": "Téléchargez N'importe Quelle Vidéo", "subtitle": "Instantanément", "description": "Téléchargez des vidéos depuis YouTube, TikTok, Instagram, Facebook et plus encore.", "placeholder": "Collez votre lien vidéo ici...", "analyze": "Analyser", "analyzing": "Analyse en cours...", "supported": "Plateformes supportées" },
+  "download": { "quality": "Qualité", "format": "Format", "video": "Vidéo", "audio_only": "Audio Seulement", "no_audio": "Vidéo Sans Audio", "download": "Télécharger", "preview": "Aperçu", "title": "Titre", "duration": "Durée", "platform": "Plateforme" },
+  "quality": { "auto": "Auto (Meilleure)", "4k": "4K (2160p)", "1080p": "Full HD (1080p)", "720p": "HD (720p)", "480p": "SD (480p)", "360p": "360p", "240p": "240p", "144p": "144p" },
+  "blog": { "title": "Blog", "subtitle": "Conseils et tutoriels", "read_more": "Lire la Suite", "comments": "Commentaires", "leave_comment": "Laisser un Commentaire", "name": "Nom", "comment": "Commentaire", "submit": "Soumettre", "no_posts": "Aucun article pour l'instant." },
+  "newsletter": { "title": "Restez Informé", "description": "Recevez les dernières actualités dans votre boîte mail.", "placeholder": "Votre adresse e-mail", "subscribe": "S'abonner", "success": "Merci pour votre abonnement!", "error": "Une erreur est survenue. Réessayez." },
+  "pages": { "about_title": "À propos de VidGet", "about_desc": "VidGet est un téléchargeur vidéo universel, gratuit et rapide.", "contact_title": "Nous Contacter", "privacy_title": "Politique de Confidentialité", "terms_title": "Conditions d'Utilisation", "disclaimer_title": "Avertissement", "advertise_title": "Faites de la Publicité" },
+  "errors": { "invalid_url": "Veuillez entrer une URL valide.", "unsupported": "Cette plateforme n'est pas encore supportée.", "fetch_failed": "Impossible de récupérer les informations.", "rate_limited": "Trop de requêtes. Veuillez patienter." },
+  "footer": { "rights": "Tous droits réservés.", "privacy": "Confidentialité", "terms": "Conditions", "disclaimer": "Avertissement" },
+  "like": { "like": "J'aime", "liked": "Aimé", "likes": "j'aime" }
+}

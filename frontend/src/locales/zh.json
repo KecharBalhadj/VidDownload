@@ -1,0 +1,12 @@
+{
+  "nav": { "home": "首页", "blog": "博客", "about": "关于我们", "contact": "联系我们", "advertise": "广告合作" },
+  "hero": { "title": "下载任意视频", "subtitle": "即刻完成", "description": "从YouTube、TikTok、Instagram、Facebook等平台下载视频。", "placeholder": "在此粘贴视频链接...", "analyze": "分析", "analyzing": "分析中...", "supported": "支持的平台" },
+  "download": { "quality": "画质", "format": "格式", "video": "视频", "audio_only": "仅音频", "no_audio": "仅视频（无音频）", "download": "下载", "preview": "预览", "title": "标题", "duration": "时长", "platform": "平台" },
+  "quality": { "auto": "自动（最佳）", "4k": "4K (2160p)", "1080p": "全高清 (1080p)", "720p": "高清 (720p)", "480p": "标清 (480p)", "360p": "360p", "240p": "240p", "144p": "144p" },
+  "blog": { "title": "博客", "subtitle": "视频下载技巧与教程", "read_more": "阅读更多", "comments": "评论", "leave_comment": "留下评论", "name": "姓名", "comment": "评论", "submit": "提交", "no_posts": "暂无文章。" },
+  "newsletter": { "title": "保持关注", "description": "将最新资讯发送到您的邮箱。", "placeholder": "您的电子邮件地址", "subscribe": "订阅", "success": "感谢您的订阅！", "error": "出现错误，请重试。" },
+  "pages": { "about_title": "关于VidGet", "about_desc": "VidGet是一款免费、快速的通用视频下载器，支持13+平台。", "contact_title": "联系我们", "privacy_title": "隐私政策", "terms_title": "服务条款", "disclaimer_title": "免责声明", "advertise_title": "与我们合作广告" },
+  "errors": { "invalid_url": "请输入有效的视频URL。", "unsupported": "暂不支持此平台。", "fetch_failed": "获取视频信息失败，请重试。", "rate_limited": "请求过多，请稍候。" },
+  "footer": { "rights": "版权所有。", "privacy": "隐私", "terms": "条款", "disclaimer": "免责声明" },
+  "like": { "like": "点赞", "liked": "已点赞", "likes": "点赞" }
+}

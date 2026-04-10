@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AdBanner from '../components/ads/AdBanner.astro';
+import { getTranslations, type Lang } from '../utils/i18n';
+
+const lang = (Astro.url.searchParams.get('lang') || 'en') as Lang;
+const t = getTranslations(lang);
+
+// Static fallback posts for build time — dynamic posts loaded client-side
+const staticPosts = [
+  {
+    id: '1',
+    slug: 'how-to-download-youtube-4k',
+    title: lang === 'ar' ? 'كيف تحمّل فيديو يوتيوب بجودة 4K' : 'How to Download YouTube Videos in 4K',
+    excerpt: lang === 'ar'
+      ? 'دليل شامل لتحميل مقاطع الفيديو من يوتيوب بأعلى جودة ممكنة.'
+      : 'A complete guide to downloading YouTube videos in the highest possible quality.',
+    date: '2024-03-01',
+    category: 'Tutorial',
+    readTime: '3 min',
+  },
+  {
+    id: '2',
+    slug: 'tiktok-without-watermark',
+    title: lang === 'ar' ? 'تحميل تيك توك بدون علامة مائية' : 'Download TikTok Without Watermark',
+    excerpt: lang === 'ar'
+      ? 'طريقة سهلة وسريعة لتحميل مقاطع تيك توك بدون علامة مائية.'
+      : 'Easy and fast way to download TikTok videos without the watermark.',
+    date: '2024-03-05',
+    category: 'Tutorial',
+    readTime: '2 min',
+  },
+  {
+    id: '3',
+    slug: 'best-video-formats-explained',
+    title: lang === 'ar' ? 'أفضل صيغ الفيديو — شرح كامل' : 'Best Video Formats Explained',
+    excerpt: lang === 'ar'
+      ? 'الفرق بين MP4 وWebM وMKV وأيها تختار للتحميل.'
+      : 'The difference between MP4, WebM, MKV and which one to choose.',
+    date: '2024-03-10',
+    category: 'Tips',
+    readTime: '4 min',
+  },
+];
+---
+
+<Layout
+  title={`${t.blog.title} — VidGet`}
+  description={t.blog.subtitle}
+  lang={lang}
+>
+  <section class="blog-hero">
+    <div class="container">
+      <h1 class="blog-title">{t.blog.title}</h1>
+      <p class="blog-subtitle">{t.blog.subtitle}</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <AdBanner slot="blog-top" />
+  </div>
+
+  <section class="blog-posts">
+    <div class="container">
+      <div class="posts-grid">
+        {staticPosts.map(post => (
+          <a href={`/blog/${post.slug}?lang=${lang}`} class="post-card card">
+            <div class="post-meta">
+              <span class="post-category badge badge-primary">{post.category}</span>
+              <span class="post-time">{post.readTime} read</span>
+            </div>
+            <h2 class="post-title">{post.title}</h2>
+            <p class="post-excerpt">{post.excerpt}</p>
+            <div class="post-footer">
+              <time class="post-date">{post.date}</time>
+              <span class="read-more">{t.blog.read_more} →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.blog-hero {
+  padding: 4rem 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.blog-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.blog-posts {
+  padding: 2.5rem 0 5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+}
+
+.post-card:hover {
+  transform: translateY(-3px);
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.post-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.post-title {
+  font-size: 1.2rem;
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.post-excerpt {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.post-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.post-date {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.read-more {
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+</style>

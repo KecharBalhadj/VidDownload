@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VideoDownloader from '../components/core/VideoDownloader.tsx';
+import AdBanner from '../components/ads/AdBanner.astro';
+import { type Lang } from '../utils/i18n';
+import { PLATFORM_THEMES } from '../utils/platforms';
+
+const lang = (Astro.url.searchParams.get('lang') || 'en') as Lang;
+const theme = PLATFORM_THEMES['linkedin'];
+---
+
+<Layout
+  title={`${theme.name} Video Downloader — VidGet`}
+  description={`Download ${theme.name} videos for free in HD quality.`}
+  lang={lang}
+  platform="linkedin"
+>
+  <section class="platform-hero" style={`--p-color: ${theme.primary}`}>
+    <div class="container">
+      <div class="platform-header">
+        <span class="platform-emoji">{theme.emoji}</span>
+        <div>
+          <h1 class="platform-title">{theme.name} <span class="accent">Downloader</span></h1>
+          <p class="platform-desc">Download {theme.name} videos for free in HD quality.</p>
+        </div>
+      </div>
+      <div class="downloader-wrap">
+        <VideoDownloader lang={lang} client:load />
+      </div>
+    </div>
+  </section>
+  <div class="container"><AdBanner slot="linkedin-mid" /></div>
+</Layout>
+
+<style>
+.platform-hero { padding: 4rem 0 3rem; position: relative; z-index: 1; }
+.platform-header { display: flex; align-items: flex-start; gap: 1.25rem; margin-bottom: 2.5rem; }
+.platform-emoji { font-size: 3.5rem; line-height: 1; flex-shrink: 0; }
+.platform-title { font-size: clamp(1.8rem, 4vw, 3rem); color: var(--text); margin-bottom: 0.5rem; }
+.accent { color: var(--p-color, var(--primary)); }
+.platform-desc { color: var(--text-muted); font-size: 1rem; max-width: 500px; }
+.downloader-wrap { max-width: 780px; }
+</style>

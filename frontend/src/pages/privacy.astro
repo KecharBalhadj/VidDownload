@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getTranslations, type Lang } from '../utils/i18n';
+const lang = (Astro.url.searchParams.get('lang') || 'en') as Lang;
+const t = getTranslations(lang);
+---
+<Layout title={`${t.pages.privacy_title} — VidGet`} description="VidGet Privacy Policy" lang={lang}>
+  <div class="page-wrapper"><div class="container">
+    <h1>{t.pages.privacy_title}</h1>
+    <div class="legal-content card">
+      <h2>Information We Collect</h2>
+      <p>VidGet collects minimal data necessary to provide our service. This includes: IP addresses for rate limiting, browser identifiers for the like system, and email addresses if you subscribe to our newsletter.</p>
+      <h2>How We Use Your Data</h2>
+      <p>We use collected data solely to provide and improve our service. We do not sell, trade, or rent your personal information to third parties.</p>
+      <h2>Cookies</h2>
+      <p>We use local storage to remember your language preference and like history. No tracking cookies are used.</p>
+      <h2>Third-Party Services</h2>
+      <p>We may use Google Analytics and Google AdSense. These services have their own privacy policies.</p>
+      <h2>Contact</h2>
+      <p>For privacy concerns, contact us at privacy@vidget.app</p>
+      <p class="last-updated">Last updated: March 2024</p>
+    </div>
+  </div></div>
+</Layout>
+<style>
+.page-wrapper { padding: 4rem 0 6rem; position: relative; z-index: 1; }
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--text); margin-bottom: 2rem; }
+.legal-content { display: flex; flex-direction: column; gap: 1.25rem; max-width: 800px; }
+.legal-content h2 { font-size: 1.2rem; color: var(--text); }
+.legal-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+.last-updated { color: var(--text-muted); font-size: 0.8rem; margin-top: 1rem; }
+</style>

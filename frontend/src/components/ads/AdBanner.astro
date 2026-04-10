@@ -1,0 +1,64 @@
+---
+interface Props {
+  slot?: string;
+  size?: 'banner' | 'rectangle' | 'leaderboard';
+}
+const { slot = 'default', size = 'banner' } = Astro.props;
+---
+
+<!-- Internal Ad Slot -->
+<div class={`ad-banner ad-${size}`} data-slot={slot}>
+  <!-- Google AdSense / Internal Ad placeholder -->
+  <div class="ad-inner">
+    <span class="ad-label">Advertisement</span>
+    <div class="ad-content">
+      <!-- Replace with actual ad code -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+      <!-- VidGet Banner -->
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-XXXXXXXXXX"
+          data-ad-slot={slot}
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</div>
+
+<style>
+.ad-banner {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.ad-banner:empty::after {
+  content: '';
+}
+
+.ad-inner {
+  position: relative;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-label {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.ad-leaderboard .ad-inner { min-height: 90px; }
+.ad-rectangle .ad-inner { min-height: 250px; }
+.ad-banner .ad-inner { min-height: 90px; }
+</style>

@@ -1,0 +1,343 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
+import { getTranslations, type Lang } from '../../utils/i18n';
+
+// Static blog posts data — used for both getStaticPaths and rendering
+const BLOG_POSTS = [
+  {
+    slug: 'how-to-download-youtube-4k',
+    title_en: 'How to Download YouTube Videos in 4K Quality',
+    title_ar: 'كيف تحمّل فيديو يوتيوب بجودة 4K',
+    excerpt_en: 'A complete guide to downloading YouTube videos in the highest possible quality.',
+    excerpt_ar: 'دليل شامل لتحميل مقاطع الفيديو من يوتيوب بأعلى جودة ممكنة.',
+    content_en: `
+## Introduction
+YouTube is the world's largest video platform, hosting billions of videos in various resolutions from 144p all the way up to stunning 8K. With VidGet, you can download any YouTube video in any quality — including 4K Ultra HD.
+
+## Step-by-Step Guide
+
+### Step 1: Find Your Video
+Navigate to YouTube and find the video you want to download. Copy the URL from your browser's address bar or tap "Share → Copy link" in the YouTube app.
+
+### Step 2: Paste and Analyze
+Go to VidGet and paste the URL into the input field. Click the **Analyze** button. VidGet will automatically detect the platform and fetch all available quality options.
+
+### Step 3: Choose 4K Quality
+In the quality selector, choose **4K (2160p)** if your video supports it. Not all videos are available in 4K — this depends on what the uploader provided.
+
+### Step 4: Download
+Click the Download button and your browser will start downloading the video immediately.
+
+## Tips for 4K Downloads
+- 4K files are large (typically 1-4GB per hour of video)
+- Make sure you have enough storage space
+- A stable internet connection is recommended for large downloads
+- Use MP4 format for best compatibility
+    `,
+    content_ar: `
+## مقدمة
+يوتيوب هو أكبر منصة فيديو في العالم، ويستضيف مليارات مقاطع الفيديو بدقات مختلفة من 144p حتى 8K المذهلة. مع VidGet، يمكنك تحميل أي فيديو من يوتيوب بأي جودة — بما في ذلك 4K.
+
+## دليل خطوة بخطوة
+
+### الخطوة 1: ابحث عن الفيديو
+انتقل إلى يوتيوب وابحث عن الفيديو الذي تريد تحميله. انسخ الرابط من شريط العنوان في متصفحك.
+
+### الخطوة 2: الصق وحلّل
+افتح VidGet والصق الرابط في حقل الإدخال. اضغط على زر **تحليل**. سيكتشف VidGet المنصة تلقائياً ويجلب جميع خيارات الجودة المتاحة.
+
+### الخطوة 3: اختر جودة 4K
+في محدد الجودة، اختر **4K (2160p)** إذا كان الفيديو يدعمها.
+
+### الخطوة 4: التحميل
+اضغط على زر التحميل وسيبدأ متصفحك في تحميل الفيديو فوراً.
+    `,
+    date: '2024-03-01',
+    category: 'Tutorial',
+    readTime: '3 min',
+  },
+  {
+    slug: 'tiktok-without-watermark',
+    title_en: 'Download TikTok Without Watermark — Complete Guide',
+    title_ar: 'تحميل تيك توك بدون علامة مائية — دليل كامل',
+    excerpt_en: 'Easy and fast way to download TikTok videos without the watermark.',
+    excerpt_ar: 'طريقة سهلة وسريعة لتحميل مقاطع تيك توك بدون علامة مائية.',
+    content_en: `
+## Why Remove the TikTok Watermark?
+When you download a TikTok video using the native TikTok download button, it adds a large watermark with your username and the TikTok logo. This can be distracting if you want to re-use the content for personal purposes.
+
+## How VidGet Removes the Watermark
+VidGet processes the video through our backend which fetches the original, unwatermarked version directly from TikTok's CDN. This is the cleanest possible result.
+
+## Steps
+1. Open TikTok and find your video
+2. Tap the Share button → Copy Link
+3. Paste into VidGet and click Analyze
+4. The result will automatically show the watermark-free version
+5. Download!
+
+## Important Note
+Always respect content creators' rights. Only download videos for personal use.
+    `,
+    content_ar: `
+## لماذا إزالة العلامة المائية من تيك توك؟
+عندما تحمّل فيديو تيك توك باستخدام زر التحميل الأصلي، يضيف علامة مائية كبيرة تحتوي على اسم المستخدم وشعار تيك توك. وهذا قد يكون مزعجاً إذا أردت استخدام المحتوى لأغراض شخصية.
+
+## كيف يزيل VidGet العلامة المائية
+يعالج VidGet الفيديو عبر الخادم الخلفي الذي يجلب النسخة الأصلية بدون علامة مائية مباشرة من CDN تيك توك.
+
+## الخطوات
+1. افتح تيك توك وابحث عن الفيديو
+2. اضغط على زر المشاركة → نسخ الرابط
+3. الصق في VidGet واضغط تحليل
+4. ستظهر النتيجة تلقائياً بدون علامة مائية
+5. حمّل!
+    `,
+    date: '2024-03-05',
+    category: 'Tutorial',
+    readTime: '2 min',
+  },
+  {
+    slug: 'best-video-formats-explained',
+    title_en: 'Best Video Formats Explained: MP4 vs WebM vs MKV',
+    title_ar: 'أفضل صيغ الفيديو — MP4 مقابل WebM مقابل MKV',
+    excerpt_en: 'The difference between MP4, WebM, MKV and which one to choose.',
+    excerpt_ar: 'الفرق بين MP4 وWebM وMKV وأيها تختار للتحميل.',
+    content_en: `
+## Understanding Video Formats
+
+### MP4 (H.264)
+The most universally compatible format. Works on virtually every device, browser, and media player. Best choice for general use.
+
+### WebM (VP9 / AV1)
+Google's open video format. Excellent compression — smaller file sizes at the same quality. Great for web use.
+
+### MKV (Matroska)
+A container format that can hold multiple audio/video tracks, subtitles, and chapters. Best for high-quality archiving.
+
+## Which Should You Choose?
+- **For general use**: MP4
+- **For smaller files**: WebM  
+- **For archiving / maximum quality**: MKV
+- **For audio only**: MP3 or M4A
+    `,
+    content_ar: `
+## فهم صيغ الفيديو
+
+### MP4 (H.264)
+الصيغة الأكثر توافقاً عالمياً. تعمل على تقريباً كل جهاز ومتصفح ومشغل وسائط. الخيار الأفضل للاستخدام العام.
+
+### WebM (VP9 / AV1)
+صيغة الفيديو المفتوحة من Google. ضغط ممتاز — أحجام ملفات أصغر بنفس الجودة. رائعة للاستخدام على الويب.
+
+### MKV (Matroska)
+صيغة حاوية يمكنها استيعاب مسارات صوت/فيديو متعددة وترجمات وفصول. الأفضل للأرشفة عالية الجودة.
+
+## أيها تختار؟
+- **للاستخدام العام**: MP4
+- **لأحجام أصغر**: WebM
+- **للأرشفة / أعلى جودة**: MKV
+- **للصوت فقط**: MP3 أو M4A
+    `,
+    date: '2024-03-10',
+    category: 'Tips',
+    readTime: '4 min',
+  },
+];
+
+export function getStaticPaths() {
+  return BLOG_POSTS.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: typeof BLOG_POSTS[0];
+}
+
+const { post } = Astro.props;
+const lang = (Astro.url.searchParams.get('lang') || 'en') as Lang;
+const t = getTranslations(lang);
+const isAr = lang === 'ar';
+
+const title = isAr ? post.title_ar : post.title_en;
+const content = isAr ? post.content_ar : post.content_en;
+const excerpt = isAr ? post.excerpt_ar : post.excerpt_en;
+---
+
+<Layout
+  title={`${title} — VidGet Blog`}
+  description={excerpt}
+  lang={lang}
+>
+  <article class="blog-post">
+    <div class="container">
+      <div class="post-layout">
+        <div class="post-main">
+          <header class="post-header">
+            <div class="post-meta">
+              <span class="badge badge-primary">{post.category}</span>
+              <span class="meta-sep">·</span>
+              <time>{post.date}</time>
+              <span class="meta-sep">·</span>
+              <span>{post.readTime} {isAr ? 'دقيقة قراءة' : 'read'}</span>
+            </div>
+            <h1 class="post-title">{title}</h1>
+            <p class="post-excerpt">{excerpt}</p>
+          </header>
+
+          <AdBanner slot={`blog-post-${post.slug}`} />
+
+          <div class="post-content" set:html={content.replace(/\n## /g, '\n<h2>').replace(/\n### /g, '\n<h3>').replace(/\n/g, '<br>')} />
+
+          <!-- Like Button -->
+          <div class="post-actions">
+            <button class="like-btn" id="likeBtn" data-post-id={post.id}>
+              <span class="like-icon">♡</span>
+              <span id="likeCount">0</span>
+              <span>{t.like.likes}</span>
+            </button>
+          </div>
+
+          <!-- Comments Section -->
+          <section class="comments-section">
+            <h3 class="comments-title">{t.blog.comments}</h3>
+            <div id="commentsList" class="comments-list"></div>
+
+            <div class="comment-form card">
+              <h4>{t.blog.leave_comment}</h4>
+              <input type="text" id="commentName" class="input-field" placeholder={t.blog.name} />
+              <textarea id="commentText" class="input-field comment-textarea" placeholder={t.blog.comment}></textarea>
+              <button class="btn btn-primary" id="submitComment">{t.blog.submit}</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="post-sidebar">
+          <div class="card sidebar-card">
+            <h4 class="sidebar-title">Download Tools</h4>
+            <ul class="sidebar-links">
+              <li><a href="/youtube-downloader">🎬 YouTube Downloader</a></li>
+              <li><a href="/tiktok-downloader">🎵 TikTok Downloader</a></li>
+              <li><a href="/instagram-downloader">📸 Instagram Downloader</a></li>
+              <li><a href="/facebook-downloader">📘 Facebook Downloader</a></li>
+            </ul>
+          </div>
+          <AdBanner slot="blog-sidebar" size="rectangle" />
+        </aside>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<script>
+  import { getBrowserId, hasLiked, markLiked } from '../../utils/browserid';
+  import { likePost } from '../../utils/api';
+
+  const likeBtn = document.getElementById('likeBtn') as HTMLButtonElement;
+  const likeCount = document.getElementById('likeCount');
+  const postId = likeBtn?.dataset.postId || '';
+
+  // Initialize like state
+  if (hasLiked(postId)) {
+    likeBtn?.classList.add('liked');
+    const icon = likeBtn?.querySelector('.like-icon');
+    if (icon) icon.textContent = '♥';
+  }
+
+  likeBtn?.addEventListener('click', async () => {
+    if (hasLiked(postId)) return;
+    try {
+      const browserId = getBrowserId();
+      const res = await likePost(postId, browserId);
+      markLiked(postId);
+      if (likeCount) likeCount.textContent = String(res.likes);
+      likeBtn.classList.add('liked');
+      const icon = likeBtn.querySelector('.like-icon');
+      if (icon) icon.textContent = '♥';
+    } catch {}
+  });
+
+  // Local comments (localStorage for demo)
+  const commentsKey = `comments_${postId}`;
+  const commentsList = document.getElementById('commentsList');
+  const submitBtn = document.getElementById('submitComment');
+  const nameInput = document.getElementById('commentName') as HTMLInputElement;
+  const textInput = document.getElementById('commentText') as HTMLTextAreaElement;
+
+  function renderComments() {
+    const comments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+    if (!commentsList) return;
+    commentsList.innerHTML = comments.length === 0
+      ? '<p class="no-comments">No comments yet. Be the first!</p>'
+      : comments.map((c: {name:string, text:string, date:string}) => `
+          <div class="comment-item">
+            <div class="comment-header">
+              <strong>${c.name}</strong>
+              <time>${c.date}</time>
+            </div>
+            <p>${c.text}</p>
+          </div>
+        `).join('');
+  }
+
+  submitBtn?.addEventListener('click', () => {
+    const name = nameInput?.value.trim();
+    const text = textInput?.value.trim();
+    if (!name || !text) return;
+    const comments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+    comments.unshift({ name, text, date: new Date().toLocaleDateString() });
+    localStorage.setItem(commentsKey, JSON.stringify(comments));
+    nameInput.value = '';
+    textInput.value = '';
+    renderComments();
+  });
+
+  renderComments();
+</script>
+
+<style>
+.blog-post { padding: 4rem 0 6rem; position: relative; z-index: 1; }
+.post-layout { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: start; }
+.post-header { margin-bottom: 2rem; }
+.post-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem; color: var(--text-muted); font-size: 0.85rem; }
+.meta-sep { opacity: 0.4; }
+.post-title { font-size: clamp(1.8rem, 4vw, 3rem); color: var(--text); margin-bottom: 1rem; line-height: 1.2; }
+.post-excerpt { color: var(--text-muted); font-size: 1rem; line-height: 1.6; max-width: 600px; margin-bottom: 2rem; }
+.post-content { line-height: 1.8; color: var(--text-muted); margin: 2rem 0; }
+.post-content h2 { font-size: 1.4rem; color: var(--text); margin: 2rem 0 1rem; }
+.post-content h3 { font-size: 1.1rem; color: var(--text); margin: 1.5rem 0 0.75rem; }
+.post-content strong { color: var(--text); }
+.post-actions { margin: 2rem 0; }
+.like-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--bg3); border: 1.5px solid var(--border);
+  color: var(--text-muted); padding: 0.6rem 1.25rem; border-radius: 100px;
+  font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.like-btn:hover { border-color: #ff6b6b; color: #ff6b6b; }
+.like-btn.liked { border-color: #ff6b6b; color: #ff6b6b; background: rgba(255,107,107,0.1); }
+.like-icon { font-size: 1.1rem; }
+.comments-section { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.comments-title { font-size: 1.3rem; color: var(--text); margin-bottom: 0.5rem; }
+.comment-form { display: flex; flex-direction: column; gap: 1rem; }
+.comment-form h4 { color: var(--text); font-size: 1rem; }
+.comment-textarea { min-height: 100px; resize: vertical; }
+.comment-item { padding: 1rem; background: var(--bg3); border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 0.75rem; }
+.comment-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+.comment-header strong { color: var(--text); font-size: 0.9rem; }
+.comment-header time { color: var(--text-muted); font-size: 0.78rem; }
+.comment-item p { color: var(--text-muted); font-size: 0.875rem; line-height: 1.6; }
+.no-comments { color: var(--text-muted); font-size: 0.875rem; padding: 1rem 0; }
+.post-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 80px; }
+.sidebar-title { font-size: 0.9rem; color: var(--text); margin-bottom: 1rem; font-weight: 700; }
+.sidebar-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.sidebar-links a { color: var(--text-muted); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 0.5rem; }
+.sidebar-links a:hover { color: var(--text); }
+@media (max-width: 900px) {
+  .post-layout { grid-template-columns: 1fr; }
+  .post-sidebar { position: static; }
+}
+</style>

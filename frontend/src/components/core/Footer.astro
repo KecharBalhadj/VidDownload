@@ -1,0 +1,225 @@
+---
+import { getTranslations, type Lang } from '../../utils/i18n';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang as Lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <span class="logo-icon">⬇</span>
+          <span class="logo-text">Vid<span class="logo-accent">Get</span></span>
+        </a>
+        <p class="footer-desc">
+          {lang === 'ar'
+            ? 'محمّل فيديو مجاني وسريع وشامل يدعم أكثر من 13 منصة.'
+            : 'Free, fast, universal video downloader. 13+ platforms supported.'}
+        </p>
+        <div class="social-links">
+          <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+          <a href="#" aria-label="Instagram" class="social-link">◎</a>
+          <a href="#" aria-label="YouTube" class="social-link">▶</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Platforms</h4>
+        <ul class="footer-links">
+          <li><a href="/youtube-downloader">YouTube</a></li>
+          <li><a href="/tiktok-downloader">TikTok</a></li>
+          <li><a href="/instagram-downloader">Instagram</a></li>
+          <li><a href="/facebook-downloader">Facebook</a></li>
+          <li><a href="/twitter-downloader">Twitter / X</a></li>
+          <li><a href="/pinterest-downloader">Pinterest</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Company</h4>
+        <ul class="footer-links">
+          <li><a href="/about">{t.nav.about}</a></li>
+          <li><a href="/blog">{t.nav.blog}</a></li>
+          <li><a href="/contact">{t.nav.contact}</a></li>
+          <li><a href="/advertise">{t.nav.advertise}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Legal</h4>
+        <ul class="footer-links">
+          <li><a href="/privacy">{t.footer.privacy}</a></li>
+          <li><a href="/terms">{t.footer.terms}</a></li>
+          <li><a href="/disclaimer">{t.footer.disclaimer}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© {year} VidGet. {t.footer.rights}</p>
+      <div class="footer-bottom-links">
+        <a href="/privacy">{t.footer.privacy}</a>
+        <a href="/terms">{t.footer.terms}</a>
+        <a href="/disclaimer">{t.footer.disclaimer}</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  margin-top: 6rem;
+  padding-top: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+}
+
+.footer-brand .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+
+.logo-icon {
+  font-size: 1.2rem;
+  background: var(--primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.logo-accent { color: var(--primary); }
+
+.footer-desc {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  max-width: 280px;
+}
+
+.social-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.footer-heading {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  font-family: var(--font-body);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--text);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-bottom-links a {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-bottom-links a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+</style>

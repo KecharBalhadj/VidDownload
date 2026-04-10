@@ -1,0 +1,80 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: vidget
+      POSTGRES_USER: vidget
+      POSTGRES_PASSWORD: vidget_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vidget"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql://vidget:vidget_dev_password@db:5432/vidget
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET_KEY: dev-secret-key-change-in-production
+      FLASK_ENV: development
+      FLASK_DEBUG: 1
+      FRONTEND_URL: http://localhost:4321
+      ADMIN_URL: http://localhost:3001
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    command: flask run --host=0.0.0.0 --port=5000 --reload
+
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    ports:
+      - "4321:4321"
+    environment:
+      PUBLIC_API_URL: http://localhost:5000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    depends_on:
+      - backend
+
+  admin:
+    image: node:20-alpine
+    working_dir: /app
+    ports:
+      - "3001:3001"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:5000
+    volumes:
+      - ./admin:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

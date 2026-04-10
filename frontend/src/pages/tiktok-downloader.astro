@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VideoDownloader from '../components/core/VideoDownloader.tsx';
+import AdBanner from '../components/ads/AdBanner.astro';
+import { getTranslations, type Lang } from '../utils/i18n';
+import { PLATFORM_THEMES } from '../utils/platforms';
+
+const lang = (Astro.url.searchParams.get('lang') || 'en') as Lang;
+const t = getTranslations(lang);
+const theme = PLATFORM_THEMES['tiktok'];
+---
+
+<Layout
+  title="TikTok Video Downloader Without Watermark — VidGet"
+  description="Download TikTok videos without watermark for free. HD quality, fast and easy."
+  lang={lang}
+  platform="tiktok"
+>
+  <section class="platform-hero" style={`--p-color: ${theme.primary}; --p-secondary: ${theme.secondary}`}>
+    <div class="container">
+      <div class="platform-header">
+        <span class="platform-emoji">{theme.emoji}</span>
+        <div>
+          <h1 class="platform-title">{theme.name} <span class="accent">Downloader</span></h1>
+          <p class="platform-desc">
+            {lang === 'ar'
+              ? 'حمّل مقاطع تيك توك بدون علامة مائية — مجاناً وبجودة عالية'
+              : 'Download TikTok videos without watermark — free and in high quality.'}
+          </p>
+          <div class="no-wm-badge">
+            <span>✨</span>
+            {lang === 'ar' ? 'بدون علامة مائية' : 'Watermark-Free'}
+          </div>
+        </div>
+      </div>
+      <div class="downloader-wrap">
+        <VideoDownloader lang={lang} client:load />
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><AdBanner slot="tt-mid" /></div>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="card info-card">
+        <h2>How to Download TikTok Without Watermark</h2>
+        <p>VidGet uses advanced processing to remove the TikTok watermark automatically. Simply paste any TikTok link and get a clean, watermark-free video.</p>
+        <ol class="steps">
+          <li>Open TikTok and find the video you want to download.</li>
+          <li>Tap Share → Copy Link.</li>
+          <li>Paste the link above and click Analyze.</li>
+          <li>Select "No Watermark" quality and download!</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.platform-hero { padding: 4rem 0 3rem; position: relative; z-index: 1; }
+.platform-header { display: flex; align-items: flex-start; gap: 1.25rem; margin-bottom: 2.5rem; }
+.platform-emoji { font-size: 3.5rem; line-height: 1; flex-shrink: 0; }
+.platform-title { font-size: clamp(1.8rem, 4vw, 3rem); color: var(--text); margin-bottom: 0.5rem; }
+.accent { color: var(--p-color, var(--primary)); }
+.platform-desc { color: var(--text-muted); font-size: 1rem; max-width: 500px; margin-bottom: 0.75rem; }
+.no-wm-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: rgba(0,242,234,0.12); border: 1px solid rgba(0,242,234,0.3);
+  color: #00f2ea; padding: 0.3rem 0.8rem; border-radius: 100px;
+  font-size: 0.8rem; font-weight: 700;
+}
+.downloader-wrap { max-width: 780px; }
+.info-section { padding: 3rem 0 5rem; position: relative; z-index: 1; }
+.info-card h2 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--text); }
+.info-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6; }
+.steps { padding-left: 1.25rem; color: var(--text-muted); font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.5rem; }
+@media (max-width: 768px) { .platform-header { flex-direction: column; gap: 0.75rem; } }
+</style>

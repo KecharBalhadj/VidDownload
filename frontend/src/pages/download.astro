@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VideoDownloader from '../components/core/VideoDownloader.tsx';
+import { getTranslations, type Lang } from '../utils/i18n';
+
+const lang = (Astro.url.searchParams.get('lang') || 'en') as Lang;
+const t = getTranslations(lang);
+// URL is passed via query param: /download?url=VIDEO_URL&platform=youtube
+---
+
+<Layout
+  title="Download Video — VidGet"
+  description="Download your video from VidGet"
+  lang={lang}
+>
+  <section class="page-wrapper">
+    <div class="container">
+      <h1 class="page-title">{t.download.download}</h1>
+      <VideoDownloader lang={lang} client:load />
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Pre-fill URL from query params
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const videoUrl = params.get('url');
+    if (videoUrl) {
+      const input = document.querySelector('.url-input') as HTMLInputElement;
+      if (input) {
+        input.value = decodeURIComponent(videoUrl);
+        input.dispatchEvent(new Event('input'));
+      }
+    }
+  });
+</script>
+
+<style>
+.page-wrapper { padding: 4rem 0 6rem; position: relative; z-index: 1; }
+.page-title { font-size: clamp(1.8rem, 4vw, 3rem); color: var(--text); margin-bottom: 2rem; }
+</style>

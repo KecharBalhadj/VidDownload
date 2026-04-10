@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getTranslations, type Lang } from '../utils/i18n';
+const lang = (Astro.url.searchParams.get('lang') || 'en') as Lang;
+const t = getTranslations(lang);
+---
+<Layout title={`${t.pages.disclaimer_title} — VidGet`} description="VidGet Disclaimer" lang={lang}>
+  <div class="page-wrapper"><div class="container">
+    <h1>{t.pages.disclaimer_title}</h1>
+    <div class="legal-content card">
+      <h2>Copyright Notice</h2>
+      <p>VidGet does not host, store, or distribute any videos. We provide a tool that processes publicly accessible URLs. All content belongs to its respective owners and platforms.</p>
+      <h2>Personal Use Only</h2>
+      <p>This service is intended for personal use only. Downloading copyrighted content for commercial purposes may violate copyright law in your jurisdiction.</p>
+      <h2>No Affiliation</h2>
+      <p>VidGet is not affiliated with, endorsed by, or connected to YouTube, TikTok, Instagram, or any other platform listed on this site.</p>
+      <h2>Accuracy</h2>
+      <p>We make no representations about the accuracy or completeness of any content downloaded through our service.</p>
+    </div>
+  </div></div>
+</Layout>
+<style>
+.page-wrapper { padding: 4rem 0 6rem; position: relative; z-index: 1; }
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--text); margin-bottom: 2rem; }
+.legal-content { display: flex; flex-direction: column; gap: 1.25rem; max-width: 800px; }
+.legal-content h2 { font-size: 1.2rem; color: var(--text); }
+.legal-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+</style>

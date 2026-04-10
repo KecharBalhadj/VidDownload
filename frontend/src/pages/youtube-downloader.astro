@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VideoDownloader from '../components/core/VideoDownloader.tsx';
+import AdBanner from '../components/ads/AdBanner.astro';
+import { getTranslations, type Lang } from '../utils/i18n';
+import { PLATFORM_THEMES } from '../utils/platforms';
+
+const lang = (Astro.url.searchParams.get('lang') || 'en') as Lang;
+const t = getTranslations(lang);
+const theme = PLATFORM_THEMES['youtube'];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "YouTube Video Downloader — VidGet",
+  "description": "Download YouTube videos in HD, 4K, MP3. Free and fast.",
+  "url": "https://vidget.app/youtube-downloader"
+};
+---
+
+<Layout
+  title="YouTube Video Downloader — Download HD, 4K, MP3 | VidGet"
+  description="Download any YouTube video for free. Support for HD, 4K, 1080p, 720p, and MP3 audio extraction."
+  lang={lang}
+  platform="youtube"
+  schema={schema}
+>
+  <section class="platform-hero" style={`--p-color: ${theme.primary}`}>
+    <div class="container">
+      <div class="platform-header">
+        <span class="platform-emoji">{theme.emoji}</span>
+        <div>
+          <h1 class="platform-title">{theme.name} <span class="accent">Downloader</span></h1>
+          <p class="platform-desc">
+            {lang === 'ar'
+              ? 'حمّل أي فيديو من يوتيوب بجودة عالية — HD، 4K، أو صوت MP3'
+              : 'Download any YouTube video in the highest quality — HD, 4K, or MP3 audio.'}
+          </p>
+        </div>
+      </div>
+      <div class="downloader-wrap">
+        <VideoDownloader lang={lang} client:load />
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><AdBanner slot="yt-mid" size="leaderboard" /></div>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="info-grid">
+        <div class="card info-card">
+          <h2>How to Download YouTube Videos</h2>
+          <ol class="steps">
+            <li>Copy the YouTube video URL from your browser or the YouTube app.</li>
+            <li>Paste the URL into the input field above and click <strong>Analyze</strong>.</li>
+            <li>Choose your preferred quality (144p to 4K) and format (video or audio).</li>
+            <li>Click <strong>Download</strong> and enjoy!</li>
+          </ol>
+        </div>
+        <div class="card info-card">
+          <h2>Supported Formats</h2>
+          <ul class="format-list">
+            <li>🎬 MP4 Video (144p, 240p, 360p, 480p, 720p, 1080p, 4K)</li>
+            <li>🎵 MP3 Audio (128kbps, 192kbps, 320kbps)</li>
+            <li>🎞 WebM Video</li>
+            <li>🎤 M4A Audio</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.platform-hero {
+  padding: 4rem 0 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.platform-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.platform-emoji {
+  font-size: 3.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.platform-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.accent { color: var(--p-color, var(--primary)); }
+
+.platform-desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 500px;
+}
+
+.downloader-wrap {
+  max-width: 780px;
+}
+
+.info-section {
+  padding: 3rem 0 5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.info-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.steps li { line-height: 1.6; }
+.steps strong { color: var(--text); }
+
+.format-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  list-style: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .platform-header { flex-direction: column; gap: 0.75rem; }
+}
+</style>

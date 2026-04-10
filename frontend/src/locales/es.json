@@ -1,0 +1,12 @@
+{
+  "nav": { "home": "Inicio", "blog": "Blog", "about": "Acerca de", "contact": "Contacto", "advertise": "Publicidad" },
+  "hero": { "title": "Descarga Cualquier Video", "subtitle": "Al Instante", "description": "Descarga videos de YouTube, TikTok, Instagram, Facebook y más.", "placeholder": "Pega tu enlace de video aquí...", "analyze": "Analizar", "analyzing": "Analizando...", "supported": "Plataformas soportadas" },
+  "download": { "quality": "Calidad", "format": "Formato", "video": "Video", "audio_only": "Solo Audio", "no_audio": "Video Sin Audio", "download": "Descargar", "preview": "Vista Previa", "title": "Título", "duration": "Duración", "platform": "Plataforma" },
+  "quality": { "auto": "Auto (Mejor)", "4k": "4K (2160p)", "1080p": "Full HD (1080p)", "720p": "HD (720p)", "480p": "SD (480p)", "360p": "360p", "240p": "240p", "144p": "144p" },
+  "blog": { "title": "Blog", "subtitle": "Consejos y tutoriales", "read_more": "Leer Más", "comments": "Comentarios", "leave_comment": "Deja un Comentario", "name": "Nombre", "comment": "Comentario", "submit": "Enviar", "no_posts": "No hay publicaciones aún." },
+  "newsletter": { "title": "Mantente Actualizado", "description": "Recibe las últimas novedades en tu correo.", "placeholder": "Tu correo electrónico", "subscribe": "Suscribirse", "success": "¡Gracias por suscribirte!", "error": "Algo salió mal. Inténtalo de nuevo." },
+  "pages": { "about_title": "Acerca de VidGet", "about_desc": "VidGet es un descargador de video universal, gratuito y rápido.", "contact_title": "Contacto", "privacy_title": "Política de Privacidad", "terms_title": "Términos de Servicio", "disclaimer_title": "Descargo de Responsabilidad", "advertise_title": "Anúnciate con Nosotros" },
+  "errors": { "invalid_url": "Por favor ingresa una URL válida.", "unsupported": "Esta plataforma aún no está soportada.", "fetch_failed": "No se pudo obtener la información del video.", "rate_limited": "Demasiadas solicitudes. Espera un momento." },
+  "footer": { "rights": "Todos los derechos reservados.", "privacy": "Privacidad", "terms": "Términos", "disclaimer": "Aviso" },
+  "like": { "like": "Me gusta", "liked": "Te gusta", "likes": "me gusta" }
+}

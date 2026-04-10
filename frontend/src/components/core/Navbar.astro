@@ -1,0 +1,311 @@
+---
+import { getTranslations, LANG_LABELS, type Lang } from '../../utils/i18n';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang as Lang);
+---
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">⬇</span>
+      <span class="logo-text">Vid<span class="logo-accent">Get</span></span>
+    </a>
+
+    <div class="nav-links">
+      <a href="/" class="nav-link">{t.nav.home}</a>
+      <a href="/blog" class="nav-link">{t.nav.blog}</a>
+      <a href="/about" class="nav-link">{t.nav.about}</a>
+      <a href="/advertise" class="nav-link">{t.nav.advertise}</a>
+      <a href="/contact" class="nav-link">{t.nav.contact}</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" id="langBtn">
+          <span class="lang-flag">🌐</span>
+          <span id="currentLang">{LANG_LABELS[lang as Lang] || 'English'}</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          {Object.entries(LANG_LABELS).map(([code, label]) => (
+            <button
+              class={`lang-option ${code === lang ? 'active' : ''}`}
+              data-lang={code}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/" class="mobile-link">{t.nav.home}</a>
+  <a href="/blog" class="mobile-link">{t.nav.blog}</a>
+  <a href="/about" class="mobile-link">{t.nav.about}</a>
+  <a href="/advertise" class="mobile-link">{t.nav.advertise}</a>
+  <a href="/contact" class="mobile-link">{t.nav.contact}</a>
+</div>
+
+<script>
+  // Language switcher
+  const btn = document.getElementById('langBtn');
+  const dropdown = document.getElementById('langDropdown');
+
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown?.classList.toggle('open');
+  });
+
+  document.addEventListener('click', () => {
+    dropdown?.classList.remove('open');
+  });
+
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const lang = (opt as HTMLElement).dataset.lang;
+      if (lang) {
+        localStorage.setItem('vidget_lang', lang);
+        // Reload with lang param
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', lang);
+        window.location.href = url.toString();
+      }
+    });
+  });
+
+  // Mobile menu
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  mobileBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('open');
+    mobileBtn.classList.toggle('active');
+  });
+
+  // Apply stored lang on load
+  const storedLang = localStorage.getItem('vidget_lang');
+  if (storedLang) {
+    const url = new URL(window.location.href);
+    if (!url.searchParams.get('lang') && storedLang !== 'en') {
+      url.searchParams.set('lang', storedLang);
+      window.location.href = url.toString();
+    }
+  }
+</script>
+
+<style>
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 8, 16, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  font-size: 1.4rem;
+  background: var(--primary);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.logo-accent {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  transition: all var(--transition);
+  letter-spacing: 0.02em;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background: var(--bg3);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.lang-switcher {
+  position: relative;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.lang-btn:hover {
+  border-color: var(--primary);
+}
+
+.chevron {
+  opacity: 0.5;
+  font-size: 0.7rem;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-width: 160px;
+  box-shadow: var(--shadow);
+  display: none;
+}
+
+.lang-dropdown.open {
+  display: block;
+  animation: fadeIn 0.15s ease;
+}
+
+.lang-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 1rem;
+  background: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+}
+
+.lang-option:hover {
+  background: var(--bg3);
+  color: var(--text);
+}
+
+.lang-option.active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.mobile-menu-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-muted);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+
+.mobile-menu-btn.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-btn.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem;
+  gap: 0.25rem;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all var(--transition);
+}
+
+.mobile-link:hover {
+  color: var(--text);
+  background: var(--bg3);
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: flex; }
+}
+</style>

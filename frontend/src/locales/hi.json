@@ -1,0 +1,12 @@
+{
+  "nav": { "home": "होम", "blog": "ब्लॉग", "about": "हमारे बारे में", "contact": "संपर्क", "advertise": "विज्ञापन" },
+  "hero": { "title": "कोई भी वीडियो डाउनलोड करें", "subtitle": "तुरंत", "description": "YouTube, TikTok, Instagram, Facebook और अधिक से वीडियो डाउनलोड करें।", "placeholder": "यहाँ वीडियो लिंक पेस्ट करें...", "analyze": "विश्लेषण", "analyzing": "विश्लेषण हो रहा है...", "supported": "समर्थित प्लेटफ़ॉर्म" },
+  "download": { "quality": "गुणवत्ता", "format": "प्रारूप", "video": "वीडियो", "audio_only": "केवल ऑडियो", "no_audio": "वीडियो (ऑडियो रहित)", "download": "डाउनलोड", "preview": "पूर्वावलोकन", "title": "शीर्षक", "duration": "अवधि", "platform": "प्लेटफ़ॉर्म" },
+  "quality": { "auto": "स्वचालित (सर्वश्रेष्ठ)", "4k": "4K (2160p)", "1080p": "Full HD (1080p)", "720p": "HD (720p)", "480p": "SD (480p)", "360p": "360p", "240p": "240p", "144p": "144p" },
+  "blog": { "title": "ब्लॉग", "subtitle": "टिप्स और ट्यूटोरियल", "read_more": "और पढ़ें", "comments": "टिप्पणियाँ", "leave_comment": "टिप्पणी छोड़ें", "name": "नाम", "comment": "टिप्पणी", "submit": "सबमिट", "no_posts": "अभी कोई पोस्ट नहीं।" },
+  "newsletter": { "title": "अपडेट रहें", "description": "नवीनतम समाचार अपने इनबॉक्स में पाएं।", "placeholder": "आपका ईमेल पता", "subscribe": "सब्सक्राइब", "success": "सब्सक्राइब करने के लिए धन्यवाद!", "error": "कुछ गलत हो गया। पुनः प्रयास करें।" },
+  "pages": { "about_title": "VidGet के बारे में", "about_desc": "VidGet एक मुफ़्त, तेज़ और सार्वभौमिक वीडियो डाउनलोडर है।", "contact_title": "संपर्क करें", "privacy_title": "गोपनीयता नीति", "terms_title": "सेवा की शर्तें", "disclaimer_title": "अस्वीकरण", "advertise_title": "हमारे साथ विज्ञापन करें" },
+  "errors": { "invalid_url": "कृपया एक वैध URL दर्ज करें।", "unsupported": "यह प्लेटफ़ॉर्म अभी समर्थित नहीं है।", "fetch_failed": "वीडियो जानकारी प्राप्त करने में विफल।", "rate_limited": "बहुत अधिक अनुरोध। कृपया प्रतीक्षा करें।" },
+  "footer": { "rights": "सर्वाधिकार सुरक्षित।", "privacy": "गोपनीयता", "terms": "शर्तें", "disclaimer": "अस्वीकरण" },
+  "like": { "like": "पसंद", "liked": "पसंद किया", "likes": "पसंद" }
+}
