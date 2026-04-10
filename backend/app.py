@@ -75,12 +75,13 @@ def internal_error(e):
 
 
 # ─── Startup ───────────────────────────────────────
-if __name__ == '__main__':
-    try:
-        init_db()
-    except Exception as e:
-        print(f'DB init warning: {e}')
+try:
+    init_db()
+except Exception as e:
+    print(f'DB init warning: {e}')
 
+
+if __name__ == '__main__':
     debug = os.getenv('FLASK_DEBUG', '0') == '1'
     port = int(os.getenv('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=debug)
